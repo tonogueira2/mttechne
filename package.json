@@ -7,7 +7,9 @@
   "scripts": {
     "start": "NODE_ENV=production node ./bin/www.js",
     "dev": "NODE_ENV=development nodemon --inspect=0.0.0.0 --ext js,mjs,json,env ./bin/www.js",
-    "test": "jest"
+    "pretest": "NODE_ENV=test sequelize db:migrate",
+    "test": "NODE_ENV=test jest",
+    "posttest": "NODE_ENV=test sequelize db:migrate:undo:all"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
